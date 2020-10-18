@@ -1,4 +1,4 @@
-print("Huffman Compression Program by Sudhamshu B N")
+print("Huffman Compression Program")
 print(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
 my_string = input("Enter the string you want to compress:")
 len_my_string = len(my_string)
