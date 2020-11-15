@@ -92,6 +92,7 @@ for character in my_string:
             bitstring = bitstring + item[1]
 
 binary ="0b"+bitstring
+print("Your message as binary is:")
 print(binary)
 
 uncompressed_file_size = len(my_string)*7
@@ -99,11 +100,10 @@ compressed_file_size = len(binary)-2
 print("Your original file size was", uncompressed_file_size,"bits. The compressed size is:",compressed_file_size)
 print("This is a saving of ",uncompressed_file_size-compressed_file_size,"bits")
 
-print("Your message as binary is:")
 print("Compressed file generated as compressed.txt")
 output = open("compressed.txt","w+")
+print("Decoding.......")
 output.write(binary)
-print(binary)
 
 bitstring = str(binary[2:])
 uncompressed_string =""
