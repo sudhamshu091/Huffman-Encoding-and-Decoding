@@ -100,8 +100,8 @@ print("Your original file size was", uncompressed_file_size,"bits. The compresse
 print("This is a saving of ",uncompressed_file_size-compressed_file_size,"bits")
 
 print("Your message as binary is:")
-print("Compressed file generated as compressed.bin")
-output = open("compressed.bin","w+")
+print("Compressed file generated as compressed.txt")
+output = open("compressed.txt","w+")
 output.write(binary)
 print(binary)
 
