@@ -3,10 +3,12 @@ print("==================================================================")
 h = int(input("Enter 1 if you want to enter in command window, 2 if you are using .txt file:"))
 if h == 1:
     my_string = input("Enter the string you want to compress:")
-if h == 2:
+elif h == 2:
     file = input("Enter the filename:")
     with open(file, 'r') as f:
         my_string = f.read()
+else:
+    print("You entered invalid input")
 len_my_string = len(my_string)
 print ("Enetered string is :")
 print(my_string)
@@ -98,8 +100,8 @@ print("Your original file size was", uncompressed_file_size,"bits. The compresse
 print("This is a saving of ",uncompressed_file_size-compressed_file_size,"bits")
 
 print("Your message as binary is:")
-print("Compressed file generated as compressed.txt")
-output = open("compressed.txt","w+")
+print("Compressed file generated as compressed.bin")
+output = open("compressed.bin","w+")
 output.write(binary)
 print(binary)
 
