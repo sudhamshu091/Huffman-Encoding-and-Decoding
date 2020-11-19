@@ -1,5 +1,5 @@
 print("Huffman Compression Program")
-print("==================================================================")
+print("=================================================================")
 h = int(input("Enter 1 if you want to enter in command window, 2 if you are using some file:"))
 if h == 1:
     my_string = input("Enter the string you want to compress:")
