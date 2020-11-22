@@ -10,8 +10,7 @@ elif h == 2:
 else:
     print("You entered invalid input")
 len_my_string = len(my_string)
-print ("Enetered string is :")
-print(my_string)
+print ("Enetered string is:",my_string)
 print("Your data is ",len_my_string * 7 , "bits long")
 
 letters = []
@@ -80,7 +79,6 @@ else:
                 code = code + node[2]
         lettercode =[letter,code]
         letter_binary.append(lettercode)
-
 print("Binary code generated:")
 for letter in letter_binary:
     print(letter[0], letter[1])
@@ -110,6 +108,7 @@ uncompressed_string =""
 code =""
 for digit in bitstring:
     code = code+digit
+    print(code)
     pos=0
     for letter in letter_binary:
         if code ==letter[1]:
