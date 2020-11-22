@@ -108,7 +108,6 @@ uncompressed_string =""
 code =""
 for digit in bitstring:
     code = code+digit
-    print(code)
     pos=0
     for letter in letter_binary:
         if code ==letter[1]:
