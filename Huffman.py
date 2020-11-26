@@ -10,7 +10,7 @@ elif h == 2:
 else:
     print("You entered invalid input")
 len_my_string = len(my_string)                        # taking user input
-print ("Enetered string is:",my_string)
+print ("Entered string is:",my_string)
 print("Your data is ",len_my_string * 7 , "bits long")
 
 letters = []
