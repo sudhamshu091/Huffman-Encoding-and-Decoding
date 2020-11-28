@@ -9,8 +9,8 @@ elif h == 2:
         my_string = f.read()
 else:
     print("You entered invalid input")
-len_my_string = len(my_string)                        # taking user input
-print ("Entered string is:",my_string)
+len_my_string = len(my_string)
+print ("Enetered string is:",my_string)
 print("Your data is ",len_my_string * 7 , "bits long")
 
 letters = []
@@ -18,36 +18,36 @@ only_letters = []
 for letter in my_string:
     if letter not in letters:
         frequency = my_string.count(letter)            #frequency of each letter repetition
-        letters.append(frequency)                      
-        letters.append(letter)                         
+        letters.append(frequency)                      #in the format letterfrequencyletterfrequency... (ex:a3b6c5)
+        letters.append(letter)                         #for further use
         only_letters.append(letter)
 
 nodes = []
 while len(letters) > 0:
     nodes.append(letters[0:2])
     letters = letters[2:]
-nodes.sort()                                          # sorting according to frequency
+nodes.sort()
 huffman_tree = []
-huffman_tree.append(nodes)                            #Make each unique character as a leaf node
+huffman_tree.append(nodes)
 
 def combine_nodes(nodes):
     pos = 0
     newnode = []
     if len(nodes) > 1:
-        nodes.sort() 
-        nodes[pos].append("1")                     # assigning values 1 and 0
+        nodes.sort()
+        nodes[pos].append("1")
         nodes[pos+1].append("0")
         combined_node1 = (nodes[pos] [0] + nodes[pos+1] [0])
         combined_node2 = (nodes[pos] [1] + nodes[pos+1] [1])
         newnode.append(combined_node1)
-        newnode.append(combined_node2)               # combining the nodes to generate pathways
-        newnodes=[]                                 
+        newnode.append(combined_node2)
+        newnodes=[]
         newnodes.append(newnode)
         newnodes = newnodes + nodes[2:]
         nodes = newnodes
         huffman_tree.append(nodes)
         combine_nodes(nodes)
-    return huffman_tree                              # huffman tree generation
+    return huffman_tree
 
 newnodes = combine_nodes(nodes)
 
@@ -63,7 +63,7 @@ for level in huffman_tree:
             level.remove(node)
 count = 0
 for level in huffman_tree:
-    print("Level", count,":",level)                #print huffman tree
+    print("Level", count,":",level)
     count+=1
 print()
 
@@ -75,10 +75,11 @@ else:
     for letter in only_letters:
         code =""
         for node in checklist:
-            if len (node)>2 and letter in node[1]:  #genrating binary code 
+            if len (node)>2 and letter in node[1]:
                 code = code + node[2]
         lettercode =[letter,code]
         letter_binary.append(lettercode)
+print(letter_binary)
 print("Binary code generated:")
 for letter in letter_binary:
     print(letter[0], letter[1])
@@ -88,20 +89,19 @@ for character in my_string:
     for item in letter_binary:
         if character in item:
             bitstring = bitstring + item[1]
-
 binary ="0b"+bitstring
 print("Your message as binary is:")
-print(binary)                                  # binary code generated
+print(bitstring)
 
 uncompressed_file_size = len(my_string)*7
 compressed_file_size = len(binary)-2
 print("Your original file size was", uncompressed_file_size,"bits. The compressed size is:",compressed_file_size)
 print("This is a saving of ",uncompressed_file_size-compressed_file_size,"bits")
-
+output = open("compressed.txt","w+")
 print("Compressed file generated as compressed.txt")
 output = open("compressed.txt","w+")
 print("Decoding.......")
-output.write(binary)
+output.write(bitstring)
 
 bitstring = str(binary[2:])
 uncompressed_string =""
@@ -109,11 +109,11 @@ code =""
 for digit in bitstring:
     code = code+digit
     pos=0
-    for letter in letter_binary:             #iterating and decoding
+    for letter in letter_binary:
         if code ==letter[1]:
             uncompressed_string=uncompressed_string+letter_binary[pos] [0]
             code=""
         pos+=1
 
-print("Your UNCOMPRESSED data is:")          # uncompressed string
+print("Your UNCOMPRESSED data is:")
 print(uncompressed_string)
