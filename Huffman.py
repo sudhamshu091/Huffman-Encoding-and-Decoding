@@ -8,7 +8,7 @@ elif h == 2:
     with open(file, 'r') as f:
         my_string = f.read()
 else:
-    print("You entered invalid input")
+    print("You entered invalid input")                    # taking user input
 len_my_string = len(my_string)
 print ("Enetered string is:",my_string)
 print("Your data is ",len_my_string * 7 , "bits long")
@@ -17,28 +17,28 @@ letters = []
 only_letters = []
 for letter in my_string:
     if letter not in letters:
-        frequency = my_string.count(letter)            #frequency of each letter repetition
-        letters.append(frequency)                      #in the format letterfrequencyletterfrequency... (ex:a3b6c5)
-        letters.append(letter)                         #for further use
+        frequency = my_string.count(letter)             #frequency of each letter repetition
+        letters.append(frequency)                      
+        letters.append(letter)                        
         only_letters.append(letter)
 
 nodes = []
 while len(letters) > 0:
     nodes.append(letters[0:2])
-    letters = letters[2:]
+    letters = letters[2:]                               # sorting according to frequency
 nodes.sort()
 huffman_tree = []
-huffman_tree.append(nodes)
+huffman_tree.append(nodes)                             #Make each unique character as a leaf node
 
 def combine_nodes(nodes):
     pos = 0
     newnode = []
     if len(nodes) > 1:
         nodes.sort()
-        nodes[pos].append("1")
+        nodes[pos].append("1")                       # assigning values 1 and 0
         nodes[pos+1].append("0")
         combined_node1 = (nodes[pos] [0] + nodes[pos+1] [0])
-        combined_node2 = (nodes[pos] [1] + nodes[pos+1] [1])
+        combined_node2 = (nodes[pos] [1] + nodes[pos+1] [1])  # combining the nodes to generate pathways
         newnode.append(combined_node1)
         newnode.append(combined_node2)
         newnodes=[]
@@ -47,7 +47,7 @@ def combine_nodes(nodes):
         nodes = newnodes
         huffman_tree.append(nodes)
         combine_nodes(nodes)
-    return huffman_tree
+    return huffman_tree                                     # huffman tree generation
 
 newnodes = combine_nodes(nodes)
 
@@ -63,7 +63,7 @@ for level in huffman_tree:
             level.remove(node)
 count = 0
 for level in huffman_tree:
-    print("Level", count,":",level)
+    print("Level", count,":",level)             #print huffman tree
     count+=1
 print()
 
@@ -75,7 +75,7 @@ else:
     for letter in only_letters:
         code =""
         for node in checklist:
-            if len (node)>2 and letter in node[1]:
+            if len (node)>2 and letter in node[1]:           #genrating binary code 
                 code = code + node[2]
         lettercode =[letter,code]
         letter_binary.append(lettercode)
@@ -91,14 +91,14 @@ for character in my_string:
             bitstring = bitstring + item[1]
 binary ="0b"+bitstring
 print("Your message as binary is:")
-print(bitstring)
+print(bitstring)                                         # binary code generated
 
 uncompressed_file_size = len(my_string)*7
 compressed_file_size = len(binary)-2
 print("Your original file size was", uncompressed_file_size,"bits. The compressed size is:",compressed_file_size)
 print("This is a saving of ",uncompressed_file_size-compressed_file_size,"bits")
 output = open("compressed.txt","w+")
-print("Compressed file generated as compressed.txt")
+print("Compressed file generated as compressed.txt")              
 output = open("compressed.txt","w+")
 print("Decoding.......")
 output.write(bitstring)
@@ -108,7 +108,7 @@ uncompressed_string =""
 code =""
 for digit in bitstring:
     code = code+digit
-    pos=0
+    pos=0                                        #iterating and decoding
     for letter in letter_binary:
         if code ==letter[1]:
             uncompressed_string=uncompressed_string+letter_binary[pos] [0]
@@ -116,4 +116,4 @@ for digit in bitstring:
         pos+=1
 
 print("Your UNCOMPRESSED data is:")
-print(uncompressed_string)
+print(uncompressed_string)                         # uncompressed string
